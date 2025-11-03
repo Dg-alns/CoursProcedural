@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VTools.Grid;
@@ -18,6 +19,7 @@ namespace Components.ProceduralGeneration.SimpleRoomPlacement
             // ........
 
             int curentRoomsNb = 0;
+            List<(RectInt, bool)> allRoom = new();
 
             for (int i = 0; i < _maxSteps; i++)
             {
