@@ -47,7 +47,7 @@ public enum TYPECORRIDOR
 namespace Components.ProceduralGeneration.SimpleRoomPlacement
 {
     [CreateAssetMenu(menuName = "Procedural Generation Method/Simple Room Placement")]
-    public class SimpleRoomPlacement : ProceduralGenerationMethod
+    public class SimpleRoomPlacement : DonjonGenerationMethod
     {
         [Header("Room Parameters")]
         [SerializeField] private int _maxRooms = 10;
@@ -84,7 +84,7 @@ namespace Components.ProceduralGeneration.SimpleRoomPlacement
 
                 RectInt room = new(new(rdmX, rdmY), new(rdmW, rdmL));
 
-                if (CanPlaceRoom(room, 1))
+                if (CanPlaceRoom(room, 3))
                 {
                     BuildRoom(room);
 
@@ -128,42 +128,6 @@ namespace Components.ProceduralGeneration.SimpleRoomPlacement
             BuildGround();
 
 
-        }
-        
-        private void BuildGround()
-        {
-            var groundTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>("Grass");
-            
-            // Instantiate ground blocks
-            for (int x = 0; x < Grid.Width; x++)
-            {
-                for (int z = 0; z < Grid.Lenght; z++)
-                {
-                    if (!Grid.TryGetCellByCoordinates(x, z, out var chosenCell))
-                    {
-                        Debug.LogError($"Unable to get cell on coordinates : ({x}, {z})");
-                        continue;
-                    }
-                    
-                    GridGenerator.AddGridObjectToCell(chosenCell, groundTemplate, false);
-                }
-            }
-        }
-
-
-        void BuildRoom(RectInt room)
-        {
-            for (int x = room.position.x; x < room.position.x + room.width; x++)
-            {
-                for (int y = room.position.y; y < room.position.y + room.height; y++) 
-                { 
-
-                    if (Grid.TryGetCellByCoordinates(x, y, out var cell))
-                    {
-                        AddTileToCell(cell, ROOM_TILE_NAME, false);
-                    }
-                }
-            }
         }
 
 
@@ -271,6 +235,9 @@ namespace Components.ProceduralGeneration.SimpleRoomPlacement
 
 
             if (horizontal == TYPECORRIDOR.None && vertical == TYPECORRIDOR.None) throw new System.Exception("Error Type are none");
+
+
+            // create simulation corridor
 
             CreateCorridor(start.roomRect.center, end.roomRect.center, GetLinkOffRoom(end, horizontal, vertical), horizontal, vertical);
         }
