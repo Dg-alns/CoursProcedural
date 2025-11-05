@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4def6d7568073c7448b5bbafbdf52dd1, type: 3}
-  m_Name: BSP
+  m_Script: {fileID: 11500000, guid: 651da3a244cb0ec4ca37d479e426997d, type: 3}
+  m_Name: CellularAutomata
   m_EditorClassIdentifier: 
-  _maxSteps: 1000
-  nbLeafs: 4
+  _maxSteps: 7
+  noiseDensity: 17
+  nbGrassAround: 6

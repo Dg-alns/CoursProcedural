@@ -101,5 +101,28 @@ namespace Components.ProceduralGeneration
             var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
             GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
         }
+
+
+
+        protected void BuildGround()
+        {
+            var groundTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>("Grass");
+
+            // Instantiate ground blocks
+            for (int x = 0; x < Grid.Width; x++)
+            {
+                for (int z = 0; z < Grid.Lenght; z++)
+                {
+                    if (!Grid.TryGetCellByCoordinates(x, z, out var chosenCell))
+                    {
+                        Debug.LogError($"Unable to get cell on coordinates : ({x}, {z})");
+                        continue;
+                    }
+
+                    GridGenerator.AddGridObjectToCell(chosenCell, groundTemplate, false);
+                }
+            }
+        }
     }
+
 }

@@ -5,6 +5,7 @@ using VTools.RandomService;
 public class Node
 {
     RectInt room;
+    RectInt visualRoom;
 
     Node? child1;
     Node? child2;
@@ -38,6 +39,7 @@ public class Node
     public Node Child1 => child1;
     public Node Child2 => child2;
     public RectInt Room => room;
+    public RectInt VisualRoom => visualRoom;
     public Vector2Int MinSize => minSize;
 
     public Node GetLastChild()
@@ -118,25 +120,32 @@ public class Node
         int width = room.width - (x - room.x) - RandomService.Range(1, Mathf.Max(2, room.width / 4));
         int height = room.height - (y - room.y) - RandomService.Range(1, Mathf.Max(2, room.height / 4));
 
-        return new RectInt(x, y, width, height);
+        visualRoom = new RectInt(x, y, width, height);
+        return visualRoom;
     }
 
 
-    public (List<int>, int) DetecteSavePositionOffChildren(Node _child1, Node _child2)
+    public (List<int>, int) DetecteSamePositionOffChildren(Node _child1, Node _child2)
     {
-        RectInt child1 = _child1.room;
-        RectInt child2 = _child2.room;
-
-        List<int> allPosChild1 = new();
-
-        List<int> same = new();
+        RectInt child1 = _child1.visualRoom;
+        RectInt child2 = _child2.visualRoom;
 
 
-        bool sameCenterX = child1.center.x == child2.center.x;
-        bool sameCenterY = child1.center.y == child2.center.y;
+
+        bool sameCenterX = _child1.room.center.x == _child2.room.center.x;
+        bool sameCenterY = _child1.room.center.y == _child2.room.center.y;
+
+        Debug.Log($"{child1.center.x} == {child2.center.x}");
+        Debug.Log($"{child1.center.y} == {child2.center.y}");
+
+        Debug.Log(sameCenterX);
+        Debug.Log(sameCenterY);
 
         if (sameCenterX)
         {
+            List<int> allPosChild1 = new();
+            List<int> same = new();
+
             for (int x = child1.xMin; x < child1.xMax; x++)
             {
                 allPosChild1.Add(x);
@@ -150,13 +159,13 @@ public class Node
                 }
             }
 
-            return (same, (child1.center.y < child2.center.y) ? 1 : -1); // top->bot ou bot->top
+            return (same, 0); // top->bot ou bot->top
         }
 
         if (sameCenterY)
         {
-            allPosChild1.Clear();
-            same.Clear();
+            List<int> allPosChild1 = new();
+            List<int> same = new();
 
             for (int y = child1.yMin; y < child1.yMax; y++)
             {
@@ -171,12 +180,12 @@ public class Node
                 }
             }
 
-            return (same, (child1.center.x < child2.center.x) ? 10 : -10); // right->left ou left->right
+            return (same, 1); // right->left ou left->right
         }
 
 
 
-        return (same, 0);
+        return (new(), -1);
 
     }
 

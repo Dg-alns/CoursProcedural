@@ -50,7 +50,7 @@ public class BSP : DonjonGenerationMethod
 
         List<Node> Leafs = nodes[nodes.Count - 1];
 
-
+         // Create all Room
         for (int j = 0; j < Leafs.Count; j++)
         {
             Node currentNode = Leafs[j];
@@ -63,6 +63,7 @@ public class BSP : DonjonGenerationMethod
             await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
         }
 
+        // Create all link leaf
         for (int l = 0; l < nodes[nodes.Count - 2].Count; l++)
         {
             Node currentNode = nodes[nodes.Count - 2][l];
@@ -71,35 +72,25 @@ public class BSP : DonjonGenerationMethod
             await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
         }
 
-
-        for (int i = 0; i < nodes.Count - 2; i++)
+        for (int m = nodes.Count - 3; m >= 0; m--)
         {
-            for (int l = 0; l < nodes[i].Count; l++)
+            if (nodes.Count - 3 == 0)
             {
-                Node currentNode = nodes[i][l];
-                Node ChildA1 = currentNode.Child1.GetLastChild();
-                Node ChildB1 = null;
-
-                if (l + 1 < nodes[i].Count && nodes[i][l + 1] != null)
+                CreateOtherCorridor(nodes[m][0], nodes[m][0].Child1.GetLastChild(), nodes[m][0].Child2.GetLastChild());
+                break;
+            }
+            else
+            {
+                for (int n = 0; n < nodes[m].Count; n += 2)
                 {
-                    ChildB1 = nodes[i][l + 1].Child1?.GetLastChild();
+                    Node currentNode = nodes[m][n];
+                    Node otherCurrentNode = nodes[m][n + 1];
+
+                    CreateOtherCorridor(currentNode, currentNode.Child1.GetLastChild(), otherCurrentNode.Child1.GetLastChild());
+
+                    await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
+
                 }
-                else
-                {
-                    ChildB1 = currentNode.Child2?.GetLastChild();
-                }
-
-
-
-                if (ChildA1 == null || ChildB1 == null)
-                {
-                    continue;
-                }
-
-
-                CreateOtherCorridor(currentNode, ChildA1, ChildB1);
-
-                await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
             }
         }
 
@@ -115,8 +106,6 @@ public class BSP : DonjonGenerationMethod
 
     void SplitGeneration(int nbGeneration)
     {
-        Debug.Log($"Generation {nbGeneration}");
-
         List<Node> childrend = new();
 
         for (int i = 0; i < nodes[nbGeneration].Count; i++)
@@ -157,18 +146,20 @@ public class BSP : DonjonGenerationMethod
 
     void CreateCorridor(Node node, Node Child1, Node Child2)
     {
+        (List<int>, int) samepos = node.DetecteSamePositionOffChildren(Child1, Child2);
 
-        (List<int>, int) samepos = node.DetecteSavePositionOffChildren(Child1, Child2);
-
-        int start;
-        int end;
-        int step;
+        int start = 0;
+        int end = 0;
+        int step = 0;
 
         int point = SelectPointinLst(samepos.Item1);
 
 
-        if (samepos.Item2 == 1 || samepos.Item2 == -1)
+
+
+        if (samepos.Item2 == 0)
         {
+            Debug.Log("link Vertical");
 
             start = (int)Child1.Room.center.y;
             end = (int)Child2.Room.center.y;
@@ -180,14 +171,16 @@ public class BSP : DonjonGenerationMethod
 
                 if (Grid.TryGetCellByCoordinates(point, i, out var cell))
                 {
-                    AddTileToCell(cell, CORRIDOR_TILE_NAME, false);
+                    AddTileToCell(cell, CORRIDOR_TILE_NAME, true);
                 }
             }
         }
 
 
-        else if (samepos.Item2 == 10 || samepos.Item2 == -10)
+        else if (samepos.Item2 == 1)
         {
+            Debug.Log("link Horizontal");
+
             start = (int)Child1.Room.center.x;
             end = (int)Child2.Room.center.x;
             step = start < end ? 1 : -1;
@@ -197,7 +190,7 @@ public class BSP : DonjonGenerationMethod
 
                 if (Grid.TryGetCellByCoordinates(i, point, out var cell))
                 {
-                    AddTileToCell(cell, CORRIDOR_TILE_NAME, false);
+                    AddTileToCell(cell, CORRIDOR_TILE_NAME, true);
                 }
             }
 
