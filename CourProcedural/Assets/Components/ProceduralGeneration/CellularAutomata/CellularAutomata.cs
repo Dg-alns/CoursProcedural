@@ -103,7 +103,8 @@ public class CellularAutomata : ProceduralGenerationMethod
     {
         if (Grid.TryGetCellByCoordinates(x, y, out Cell cell))
         {
-            AddTileToCell(cell, cells[x][y], true);
+            if(cell.GridObject.Template.Name != cells[x][y])
+                AddTileToCell(cell, cells[x][y], true);
         }
     }
 

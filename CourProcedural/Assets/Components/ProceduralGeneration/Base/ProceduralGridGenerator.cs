@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using VTools.Grid;
 using VTools.RandomService;
@@ -35,7 +36,6 @@ namespace Components.ProceduralGeneration
             
             _generationMethod.Initialize(this, new RandomService(_seed));
             await _generationMethod.Generate();
-            
             Debug.Log($"Generation {_generationMethod.name} completed in {(DateTime.Now - time).TotalSeconds : 0.00} seconds.");
         }
     }

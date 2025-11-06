@@ -31,7 +31,8 @@ namespace VTools.Grid
         {
             if (overrideExistingObjects && cell.ContainObject)
             {
-                cell.ClearGridObject();
+                //cell.ClearGridObject();
+                GridObjectFactory.SwitchOnGridFrom(template, cell, Grid, transform);
             }
 
             if (cell.ContainObject && !overrideExistingObjects)
@@ -55,6 +56,12 @@ namespace VTools.Grid
             }
             
             Grid = null;
+        }
+
+
+        public void SwitchCell(GridObjectTemplate template)
+        {
+
         }
     }
 }

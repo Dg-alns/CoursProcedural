@@ -28,7 +28,7 @@ namespace Components.ProceduralGeneration
         protected const string SAND_TILE_NAME = "Sand";
 
         // -------------------------------------- BASE ----------------------------------------------------
-        
+
         public void Initialize(ProceduralGridGenerator gridGenerator, RandomService randomService)
         {
             GridGenerator = gridGenerator;
