@@ -22,7 +22,7 @@ public class CellularAutomata : ProceduralGenerationMethod
     [SerializeField, Range(0, 8), Tooltip("Chance of water spawn")]
     int nbGrassAround = 4;
 
-    [NonSerialized] RulesTypeCell rules  = new();
+    [NonSerialized] RulesTypeCell rules = new();
 
     protected override async UniTask ApplyGeneration(CancellationToken cancellationToken)
     {
@@ -51,35 +51,39 @@ public class CellularAutomata : ProceduralGenerationMethod
 
         Debug.Log($"Generation noise completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
 
+        Debug.Log(cells[10, 10].GridObject.Template.Name);
 
+        string ee = ChangeCell(cells[10, 10].Coordinates, cells);
 
-        for (int i = 0; i < _maxSteps; i++)
-        {
-            time = DateTime.Now;
+        Debug.Log(ee);
 
-            for (int x = 0; x < Grid.Width; x++)
-            {
-                for (int y = 0; y < Grid.Lenght; y++)
-                {
-                    types[x, y] = ChangeCell(cells[x, y].Coordinates, cells);
+        //for (int i = 0; i < _maxSteps; i++)
+        //{
+        //    time = DateTime.Now;
 
-                }
+        //    for (int x = 0; x < Grid.Width; x++)
+        //    {
+        //        for (int y = 0; y < Grid.Lenght; y++)
+        //        {
+        //            types[x, y] = ChangeCell(cells[x, y].Coordinates, cells);
 
-            }
-            //ChangeAllCell(types, cells);
+        //        }
 
-            for (int x = 0; x < Grid.Width; x++)
-            {
-                for (int y = 0; y < Grid.Lenght; y++)
-                {
-                    UpdateGrid(types[x, y], cells[x, y]);
-                }
-                await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
-            }
+        //    }
+        //    //ChangeAllCell(types, cells);
 
-            Debug.Log($"Generation step {i} completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
+        //    for (int x = 0; x < Grid.Width; x++)
+        //    {
+        //        for (int y = 0; y < Grid.Lenght; y++)
+        //        {
+        //            UpdateGrid(types[x, y], cells[x, y]);
+        //        }
+        //        await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
+        //    }
 
-        }
+        //    Debug.Log($"Generation step {i} completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
+
+        //}
 
 
 
@@ -113,7 +117,7 @@ public class CellularAutomata : ProceduralGenerationMethod
         int nbWater = 0;
         int nbGrass = 0;
 
-        //rules.ResetAllType();
+        rules.ResetAllType();
 
         for (int x = -1; x <= 1; x++)
         {
@@ -126,9 +130,9 @@ public class CellularAutomata : ProceduralGenerationMethod
             }
         }
 
-        return (nbGrass >= nbGrassAround) ? GRASS_TILE_NAME : WATER_TILE_NAME;
+        //return (nbGrass >= nbGrassAround) ? GRASS_TILE_NAME : WATER_TILE_NAME;
 
-        //return rules.ApplyRules(cells[coordinates.x, coordinates.y]);
+        return rules.ApplyRules(cells[coordinates.x, coordinates.y]);
     }
 
     void DetectTypeCell(Cell[,] cells, int x, int y, ref int nbGrass, ref int nbWater)
@@ -140,12 +144,12 @@ public class CellularAutomata : ProceduralGenerationMethod
         if (cell == null)
             return;
 
-        //rules.AddTypeCell(cell.GridObject.Template.Name);
+        rules.AddTypeCell(cell.GridObject.Template.Name);
 
-        if (cell.GridObject.Template.Name == GRASS_TILE_NAME)
-            nbGrass++;
-        else
-            nbWater++;
+        //if (cell.GridObject.Template.Name == GRASS_TILE_NAME)
+        //    nbGrass++;
+        //else
+        //    nbWater++;
 
     }
 

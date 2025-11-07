@@ -29,7 +29,7 @@ public class RulesTypeCell
      
     static private Dictionary<string, List<Func<CellType, string, string>>> allRules = new ()
     {
-        {"Grass", new (){ ContainXTypeAround(4) } },
+        {"Grass", new (){ ContainTypeAround(4) } },
         {"Water", new (){ } }
     };
 
@@ -90,7 +90,7 @@ public class RulesTypeCell
         return ApplyRules(cell);
     }
 
-    public static Func<CellType, string, string> ContainXTypeAround(int requiredCount)
+    public static Func<CellType, string, string> ContainTypeAround(int requiredCount)
     {
         return (TargetType, cellType) =>
         {
