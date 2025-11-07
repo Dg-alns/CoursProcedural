@@ -17,15 +17,22 @@ public class TerrainNoise : Noise
 
     [SerializeField] int depth = 20;
 
+    [NonSerialized] bool isInstance = false;
     public Terrain terrain;
     protected override async UniTask ApplyGeneration(CancellationToken cancellationToken)
     {
+
         FastNoiseLite noise = new FastNoiseLite(RandomService.Seed);
 
         InitNoise(noise);
 
         terrain.terrainData = CreateTerrain(noise, terrain.terrainData);
-        Instantiate(terrain);
+
+        if (isInstance == false)
+        {
+            Instantiate(terrain);
+            isInstance = true;
+        }
 
 
     }
@@ -34,17 +41,19 @@ public class TerrainNoise : Noise
     {
         baseTerrain.size = new(width, depth, height);
 
-        baseTerrain.SetHeights(0, 0, GenerateAllHeights(noise));
+        int resolution = baseTerrain.heightmapResolution;
+
+        baseTerrain.SetHeights(0, 0, GenerateAllHeights(noise, resolution));
 
         return baseTerrain;
     }
 
-    float[,] GenerateAllHeights(FastNoiseLite noise)
+    float[,] GenerateAllHeights(FastNoiseLite noise, int resolution)
     {
-        float[,] heights = new float[width, height];
-        for (int x = 0; x < width; x++)
+        float[,] heights = new float[resolution, resolution];
+        for (int x = 0; x < resolution; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < resolution; y++)
             {
                 heights[x, y] = GetNoiseData(noise, x, y);
             }

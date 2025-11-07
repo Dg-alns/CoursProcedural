@@ -31,8 +31,8 @@ namespace VTools.Grid
         {
             if (overrideExistingObjects && cell.ContainObject)
             {
-                //cell.ClearGridObject();
-                GridObjectFactory.SwitchOnGridFrom(template, cell, Grid, transform);
+                cell.ClearGridObject();
+
             }
 
             if (cell.ContainObject && !overrideExistingObjects)

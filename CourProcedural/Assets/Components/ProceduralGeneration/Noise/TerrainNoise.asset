@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: TerrainNoise
   m_EditorClassIdentifier: 
   _maxSteps: 0
-  noiseType: 0
-  frequency: 0.1
-  amplitude: 10
-  fractalType: 0
-  octave: 3
+  noiseType: 5
+  frequency: 0.0585
+  amplitude: 1
+  fractalType: 1
+  octave: 1
   persistance: 0.5
-  lacunarity: 5
+  lacunarity: 3.39
   rockHeight: 0.807
   grassHeight: 0.43
   sandHeight: -0.5
   width: 500
   height: 500
-  depth: 20
+  depth: 40
   terrain: {fileID: 6949907030318142552, guid: 0d5a1476816bf40419b8888733328ca7, type: 3}

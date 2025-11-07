@@ -20,7 +20,7 @@ namespace VTools.Grid
             GridObjectController view = UnityEngine.Object.Instantiate(template.View, parent);
 
             // 2. Create the data model
-            GridObject gridObject = template.CreateInstance();
+            GridObject gridObject = HaveTemplateGridObject(template);
 
             // 3. Inject into a controller and finalize the view
             view.Initialize(gridObject);
@@ -29,7 +29,7 @@ namespace VTools.Grid
             
             return view;
         }
-        
+
         /// <summary>
         /// Spawn a Grid Object with all required data setup. Add the object to the grid at the correct position.
         /// </summary>
@@ -45,57 +45,16 @@ namespace VTools.Grid
             return view;
         }
 
-
-
-        //// add
-
-
-        /// <summary>
-        /// Spawn a Grid Object with all required data setup. 
-        /// </summary>
-        /// <returns>The GridObjectController mono behaviour that represents the view of the object.</returns>
-        public static GridObjectController SwitchFrom(GridObjectTemplate template, Transform parent = null, int rotation = 0,
-            Vector3? scale = null)
-        {
-            var finalScale = scale ?? Vector3.one;
-
-            // 1. Instantiate controller from prefab
-            GridObjectController view = UnityEngine.Object.Instantiate(template.View, parent);
-
-            // 2. Create the data model
-            GridObject gridObject = HaveTemplateGridObject(template);
-
-            // 3. Inject into a controller and finalize the view
-            view.Initialize(gridObject);
-            view.ApplyTransform(rotation, finalScale);
-            view.Rotate(rotation);
-
-            return view;
-        }
-
-        /// <summary>
-        /// Spawn a Grid Object with all required data setup. Add the object to the grid at the correct position.
-        /// </summary>
-        /// <returns>The GridObjectController mono behaviour that represents the view of the object.</returns>
-        public static GridObjectController SwitchOnGridFrom(GridObjectTemplate template, Cell cell, Grid grid,
-            Transform parent = null, int rotation = 0, Vector3? scale = null)
-        {
-            var view = SwitchFrom(template, parent, rotation, scale);
-
-            view.AddToGrid(cell, grid, parent);
-            cell.AddObject(view);
-
-            return view;
-        }
-
         static GridObject HaveTemplateGridObject(GridObjectTemplate template)
         {
-            if (allTemplate.ContainsKey(template.Name))
-                return allTemplate[template.Name];
+            if (allTemplate.TryGetValue(template.Name, out var gridObj) == false)
+            {
+                gridObj = template.CreateInstance();
+                return gridObj;
+            }
 
-            allTemplate[template.Name] = template.CreateInstance();
 
-            return allTemplate[template.Name];
+            return gridObj;
         }
     }
 }

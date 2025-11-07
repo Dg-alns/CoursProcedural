@@ -32,8 +32,13 @@ namespace VTools.Grid
 
         public void AddToGrid(Cell cell, Grid grid, Transform parent)
         {
-            GridObject.SetGridData(cell, grid);
+            GridObject.SetGridData(cell);
             MoveTo(cell.GetCenterPosition(grid.OriginPosition));
+        }
+
+        public void UpdateToGrid(Cell cell)
+        {
+            GridObject.SetGridData(cell);
         }
     }
 }

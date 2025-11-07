@@ -2,7 +2,7 @@
 {
     public class GridObject
     {
-        public GridObjectTemplate Template { get; }
+        public GridObjectTemplate Template { get; set; }
         public Cell Cell { get; private set; }
         public int Rotation { get; private set; }
         
@@ -16,7 +16,7 @@
             Rotation = angle;
         }
         
-        public virtual void SetGridData(Cell originCell, Grid _)
+        public virtual void SetGridData(Cell originCell/*, Grid _*/)
         {
             Cell = originCell;
         }

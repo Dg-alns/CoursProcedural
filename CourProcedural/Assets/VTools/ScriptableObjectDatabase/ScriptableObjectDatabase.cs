@@ -8,7 +8,7 @@ namespace VTools.ScriptableObjectDatabase
 {
     public static class ScriptableObjectDatabase
     {
-        private static readonly Dictionary<Type, Dictionary<string, ScriptableObject>> DATABASE = new();
+        private static readonly Dictionary<System.Type, Dictionary<string, ScriptableObject>> DATABASE = new();
         
         // -------------------------------------- DATA BASE CONSTRUCTION ---------------------------------------------
         

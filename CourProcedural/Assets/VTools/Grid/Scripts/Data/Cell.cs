@@ -24,7 +24,8 @@ namespace VTools.Grid
         {
             _object = new Tuple<GridObject, GridObjectController>(controller.GridObject, controller);
         }
-        
+
+
         public void ClearGridObject()
         {
             if (_object != null)
