@@ -4,6 +4,16 @@ using System.Linq;
 using UnityEngine;
 using VTools.Grid;
 
+public enum CELLTYPE
+{
+    Grass,
+    Water,
+    Sand,
+
+
+    None
+}
+
 public class CellType
 {
     public string type;
@@ -21,29 +31,31 @@ public class CellType
 public class RulesTypeCell
 {
 
-    static private Dictionary<string, CellType> allCellType = new ()
+    static private Dictionary<CELLTYPE, CellType> allCellType = new ()
     {
-        {"Grass", new CellType("Grass")},
-        {"Water", new CellType("Water")}
+        {CELLTYPE.Grass, new CellType("Grass")},
+        {CELLTYPE.Water, new CellType("Water")}
     };
      
-    static private Dictionary<string, List<Func<CellType, string, string>>> allRules = new ()
+    static private Dictionary<CELLTYPE, List<Func<CellType, string, string>>> allRules = new ()
     {
-        {"Grass", new (){ ContainTypeAround(4) } },
-        {"Water", new (){ } }
+        {CELLTYPE.Grass, new (){ ContainTypeAround(4) } },
+        {CELLTYPE.Water, new (){ } }
     };
+
+    public void AddRule(CELLTYPE type, Func<CellType, string, string> func)
+    {
+        allRules[type].Add(func);
+    }
 
 
     public void ResetAllType()
     {
-        Debug.Log("Start reset");
-
         foreach (CellType item in allCellType.Values)
         {
             item.isTry = false;
             item.nbOffCellAround = 0;
         }
-        Debug.Log("Reset all");
     }
 
 
@@ -67,14 +79,18 @@ public class RulesTypeCell
         if (tp == null)
             return currentType;
 
-        Debug.Log($" most cell around are {tp.type} type");
 
         if (tp == null)
             throw new Exception($"Error {tp.type} not in Dict");
 
 
-        Debug.Log($" number of rules apply for {tp.type} : {allRules[tp.type].Count}");
-        foreach (var rules in allRules[tp.type])
+        if (allRules[GetType(tp.type)].Count == 0)
+        {
+            tp.isTry = true;
+            return ApplyRules(cell);
+        }
+
+        foreach (var rules in allRules[GetType(tp.type)])
         {
             string newType = rules.Invoke(tp, currentType);
 
@@ -88,6 +104,17 @@ public class RulesTypeCell
         }
 
         return ApplyRules(cell);
+    }
+
+    CELLTYPE GetType(string type)
+    {
+        foreach (CELLTYPE item in allCellType.Keys)
+        {
+            if(item.ToString().Equals(type))
+                return item; 
+        }
+
+        return CELLTYPE.None;
     }
 
     public static Func<CellType, string, string> ContainTypeAround(int requiredCount)

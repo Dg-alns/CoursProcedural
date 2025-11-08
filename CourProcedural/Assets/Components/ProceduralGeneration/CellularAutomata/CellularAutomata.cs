@@ -49,41 +49,25 @@ public class CellularAutomata : ProceduralGenerationMethod
             await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
         }
 
-        Debug.Log($"Generation noise completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
+        for (int i = 0; i < _maxSteps; i++)
+        {
+            time = DateTime.Now;
 
-        Debug.Log(cells[10, 10].GridObject.Template.Name);
+            ChangeAllCell(types, cells);
 
-        string ee = ChangeCell(cells[10, 10].Coordinates, cells);
+            for (int x = 0; x < Grid.Width; x++)
+            {
+                for (int y = 0; y < Grid.Lenght; y++)
+                {
+                    UpdateGrid(types[x, y], cells[x, y]);
+                }
 
-        Debug.Log(ee);
+                await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
+            }
 
-        //for (int i = 0; i < _maxSteps; i++)
-        //{
-        //    time = DateTime.Now;
+            Debug.Log($"Generation step {i} completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
 
-        //    for (int x = 0; x < Grid.Width; x++)
-        //    {
-        //        for (int y = 0; y < Grid.Lenght; y++)
-        //        {
-        //            types[x, y] = ChangeCell(cells[x, y].Coordinates, cells);
-
-        //        }
-
-        //    }
-        //    //ChangeAllCell(types, cells);
-
-        //    for (int x = 0; x < Grid.Width; x++)
-        //    {
-        //        for (int y = 0; y < Grid.Lenght; y++)
-        //        {
-        //            UpdateGrid(types[x, y], cells[x, y]);
-        //        }
-        //        await UniTask.Delay(GridGenerator.StepDelay, cancellationToken: cancellationToken);
-        //    }
-
-        //    Debug.Log($"Generation step {i} completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
-
-        //}
+        }
 
 
 
@@ -103,6 +87,15 @@ public class CellularAutomata : ProceduralGenerationMethod
 
     void ChangeAllCell(string[,] cellsType, Cell[,] cells)
     {
+        for (int x = 0; x < Grid.Width; x++)
+        {
+            for (int y = 0; y < Grid.Lenght; y++)
+            {
+                cellsType[x, y] = ChangeCell(cells[x, y].Coordinates, cells);
+
+            }
+
+        }
     }
 
     void UpdateGrid(string cellsType, Cell cell)
@@ -114,9 +107,6 @@ public class CellularAutomata : ProceduralGenerationMethod
 
     string ChangeCell(Vector2Int coordinates, Cell[,] cells)
     {
-        int nbWater = 0;
-        int nbGrass = 0;
-
         rules.ResetAllType();
 
         for (int x = -1; x <= 1; x++)
@@ -126,16 +116,14 @@ public class CellularAutomata : ProceduralGenerationMethod
                 if (x == 0 && y == 0)
                     continue;
 
-                DetectTypeCell(cells, coordinates.x + x, coordinates.y + y, ref nbGrass, ref nbWater);
+                DetectTypeCell(cells, coordinates.x + x, coordinates.y + y);
             }
         }
-
-        //return (nbGrass >= nbGrassAround) ? GRASS_TILE_NAME : WATER_TILE_NAME;
 
         return rules.ApplyRules(cells[coordinates.x, coordinates.y]);
     }
 
-    void DetectTypeCell(Cell[,] cells, int x, int y, ref int nbGrass, ref int nbWater)
+    void DetectTypeCell(Cell[,] cells, int x, int y)
     {
         if (x < 0 || y < 0 || x >= Grid.Width || y >= Grid.Lenght)
             return;
@@ -145,12 +133,6 @@ public class CellularAutomata : ProceduralGenerationMethod
             return;
 
         rules.AddTypeCell(cell.GridObject.Template.Name);
-
-        //if (cell.GridObject.Template.Name == GRASS_TILE_NAME)
-        //    nbGrass++;
-        //else
-        //    nbWater++;
-
     }
 
 
