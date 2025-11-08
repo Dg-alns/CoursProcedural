@@ -88,38 +88,12 @@ public class CellRules
         return currentType;
     }
 
-    CellType GetTypeWithMostCount()
-    {
-        int max = 0;
-        CellType result = null;
-
-        foreach (var cellType in allRules.Keys)
-        {
-            if (cellType.isTry)
-                continue;
-
-            if (cellType.nbOffCellAround > max)
-            {
-                max = cellType.nbOffCellAround;
-                result = cellType;
-            }
-        }
-        return result;
-    }
-
-
-
     static CellType FindType(string type)
     {
         CellType cell = allRules.Keys.FirstOrDefault(t => t.type == type);
 
         return cell;
     }
-
-
-
-
-
 
 
     public static Func<string, (bool, string)> XContainTypeAround(Rule rule)

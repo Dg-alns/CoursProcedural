@@ -20,6 +20,13 @@ MonoBehaviour:
       constraint:
       - cellAround: 0
         nbAround: 6
+    - type: 1
+      newCellType: 2
+      constraint:
+      - cellAround: 1
+        nbAround: 4
+      - cellAround: 0
+        nbAround: 3
   - type: 2
     rules:
     - type: 0
@@ -30,14 +37,7 @@ MonoBehaviour:
   - type: 1
     rules:
     - type: 0
-      newCellType: 0
-      constraint:
-      - cellAround: 0
-        nbAround: 4
-    - type: 1
       newCellType: 2
       constraint:
       - cellAround: 0
-        nbAround: 3
-      - cellAround: 1
-        nbAround: 3
+        nbAround: 4
