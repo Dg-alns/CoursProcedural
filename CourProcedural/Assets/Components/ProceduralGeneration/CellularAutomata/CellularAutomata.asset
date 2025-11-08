@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSteps: 4
   noiseDensity: 50
-  nbGrassAround: 4
+  rulesConfig: {fileID: 11400000, guid: 4dcb36f5d3628074bb2f418aac5da5ab, type: 2}

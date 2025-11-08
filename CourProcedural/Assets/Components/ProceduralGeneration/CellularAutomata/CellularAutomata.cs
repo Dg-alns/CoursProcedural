@@ -1,32 +1,33 @@
 using Components.ProceduralGeneration;
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
-using Unity.VisualScripting.Antlr3.Runtime;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.Rendering;
 using VTools.Grid;
 using VTools.RandomService;
-using VTools.ScriptableObjectDatabase;
-using static UnityEngine.Rendering.DebugUI.Table;
+
+
 
 [CreateAssetMenu(menuName = "Procedural Generation Method/CellularAutomata")]
 public class CellularAutomata : ProceduralGenerationMethod
 {
+    [Header ("Cellular Automata")]
+
     [SerializeField, Range(1, 100), Tooltip("Chance of water spawn")]
      int noiseDensity = 50;
 
-    [SerializeField, Range(0, 8), Tooltip("Chance of water spawn")]
-    int nbGrassAround = 4;
+    [Header("Config of Rules")]
 
-    [NonSerialized] RulesTypeCell rules = new();
+    [SerializeField] RulesConfig rulesConfig;
+
+
+    [NonSerialized] CellRules rules;
 
     protected override async UniTask ApplyGeneration(CancellationToken cancellationToken)
     {
         var time = DateTime.Now;
+
+        InitRules();
 
         Cell[,] cells = new Cell[Grid.Width, Grid.Lenght];
         string[,] types = new string[Grid.Width, Grid.Lenght];
@@ -68,18 +69,49 @@ public class CellularAutomata : ProceduralGenerationMethod
             Debug.Log($"Generation step {i} completed in {(DateTime.Now - time).TotalSeconds: 0.00} seconds.");
 
         }
+    }
 
+    void InitRules()
+    {
+        rules = new();
 
+        foreach (CellRulesConfiguration typeRules in rulesConfig.allTypeRules)
+        {
+            rules.InitType(typeRules.type);
+        }
 
+        foreach (CellRulesConfiguration typeRules in rulesConfig.allTypeRules)
+        {
+            foreach (Rule rule in typeRules.rules)
+            {
+                switch (rule.type)
+                {
+                    case RULESTYPE.XAround:
+                        rules.AddRule(typeRules.type, CellRules.XContainTypeAround(rule));
+                        break;
 
-
-
-
+                    case RULESTYPE.XYAround:
+                        rules.AddRule(typeRules.type, CellRules.XYContainTypeAround(rule));
+                        break;
+                }
+            }
+        }
     }
 
     void CreateNoise(Cell cell)
     {
-        string type = (RandomService.Range(0, 100 + 1) <= noiseDensity) ? WATER_TILE_NAME : GRASS_TILE_NAME;
+        //string type = (RandomService.Range(0, 100 + 1) <= noiseDensity) ? WATER_TILE_NAME : GRASS_TILE_NAME;
+
+        int nb = RandomService.Range(0, 3);
+
+        string type = nb switch
+        {
+            0 => WATER_TILE_NAME,
+            1 => SAND_TILE_NAME,
+            2 => GRASS_TILE_NAME,
+
+            _ => throw new NotImplementedException()
+        };
 
         AddTileToCell(cell, type, true);
            
@@ -134,8 +166,4 @@ public class CellularAutomata : ProceduralGenerationMethod
 
         rules.AddTypeCell(cell.GridObject.Template.Name);
     }
-
-
-
-
 }
