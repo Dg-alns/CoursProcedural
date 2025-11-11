@@ -27,3 +27,54 @@ Cours Procedural
   - [Terrain](#noiseT)
 
 </details>
+
+
+## Architecture Général 
+
+Chaque Algorithme de génération de procédural de terrain hérite d'une architecture principal.
+Cette architecture met en place 3 scritps majeur #Grid, #Cell, #ProceduralGenerationMethod.
+
+
+
+## Grid
+
+Comme sont nom l'évoque ce script permet la gestion de la grille de #Cell ou vas ce retrouver le terrain final.
+
+  - ## Methode principal
+
+      #TryGetCellByCoordinates
+          Cette méthode permet de détecter si une #Cell est contenue dans à des coordonées précise.
+          Les arguments que reçoit cette methodes sont :
+              1. Les coordonées de la cellule voulue en int (x, y) ou via un Vector2Int
+              2. La cellule voulue via #Cell
+          La methode renvoit un booléan.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
