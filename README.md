@@ -45,9 +45,11 @@ Comme sont nom l'évoque ce script permet la gestion de la grille de *Cell* ou v
       *TryGetCellByCoordinates*<br>
           Cette méthode permet de détecter si une *Cell* est contenue dans à des coordonées précise.<br>
           Les arguments que reçoit cette methodes sont :<br>
+          <ol>
             <li> Les coordonées de la cellule voulue en int (x, y) ou via un Vector2Int.
             <li> La cellule voulue via *Cell*.
-          La methode renvoit un booléan.<br>
+    <br>
+    La methode renvoit un booléan.<br>
 
 
 
