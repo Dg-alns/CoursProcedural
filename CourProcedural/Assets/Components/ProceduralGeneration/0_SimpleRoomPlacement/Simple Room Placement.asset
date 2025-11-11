@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f17399cb59b34f6ca66b47b4c2a26722, type: 3}
   m_Name: Simple Room Placement
   m_EditorClassIdentifier: 
-  _maxSteps: 50
-  _maxRooms: 10
+  _maxSteps: 100
+  _maxRooms: 20

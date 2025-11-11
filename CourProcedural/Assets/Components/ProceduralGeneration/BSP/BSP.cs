@@ -33,12 +33,10 @@ public class BSP : DonjonGenerationMethod
             // Check for cancellation
             cancellationToken.ThrowIfCancellationRequested();
 
-            //Debug.Log($"{currentLeafs} >= {nbLeafs} ");
 
             if (currentLeafs >= nbLeafs)
                 break;
 
-            //Debug.Log($"{i} > {nodes.Count} ");
 
             if (i >= nodes.Count)
                 break;
@@ -159,7 +157,6 @@ public class BSP : DonjonGenerationMethod
 
         if (samepos.Item2 == 0)
         {
-            Debug.Log("link Vertical");
 
             start = (int)Child1.Room.center.y;
             end = (int)Child2.Room.center.y;
@@ -171,7 +168,7 @@ public class BSP : DonjonGenerationMethod
 
                 if (Grid.TryGetCellByCoordinates(point, i, out var cell))
                 {
-                    AddTileToCell(cell, CORRIDOR_TILE_NAME, true);
+                    AddTileToCell(cell, CORRIDOR_TILE_NAME, false);
                 }
             }
         }
@@ -179,7 +176,6 @@ public class BSP : DonjonGenerationMethod
 
         else if (samepos.Item2 == 1)
         {
-            Debug.Log("link Horizontal");
 
             start = (int)Child1.Room.center.x;
             end = (int)Child2.Room.center.x;
@@ -190,7 +186,7 @@ public class BSP : DonjonGenerationMethod
 
                 if (Grid.TryGetCellByCoordinates(i, point, out var cell))
                 {
-                    AddTileToCell(cell, CORRIDOR_TILE_NAME, true);
+                    AddTileToCell(cell, CORRIDOR_TILE_NAME, false);
                 }
             }
 

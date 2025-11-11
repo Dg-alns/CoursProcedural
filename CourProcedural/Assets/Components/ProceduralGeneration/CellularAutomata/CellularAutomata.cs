@@ -100,18 +100,18 @@ public class CellularAutomata : ProceduralGenerationMethod
 
     void CreateNoise(Cell cell)
     {
-        //string type = (RandomService.Range(0, 100 + 1) <= noiseDensity) ? WATER_TILE_NAME : GRASS_TILE_NAME;
+        string type = (RandomService.Range(0, 100 + 1) <= noiseDensity) ? WATER_TILE_NAME : GRASS_TILE_NAME;
 
-        int nb = RandomService.Range(0, 3);
+        //int nb = RandomService.Range(0, 3);
 
-        string type = nb switch
-        {
-            0 => WATER_TILE_NAME,
-            1 => SAND_TILE_NAME,
-            2 => GRASS_TILE_NAME,
+        //string type = nb switch
+        //{
+        //    0 => WATER_TILE_NAME,
+        //    1 => SAND_TILE_NAME,
+        //    2 => GRASS_TILE_NAME,
 
-            _ => throw new NotImplementedException()
-        };
+        //    _ => throw new NotImplementedException()
+        //};
 
         AddTileToCell(cell, type, true);
            

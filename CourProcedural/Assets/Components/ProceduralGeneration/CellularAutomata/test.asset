@@ -10,48 +10,44 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 544ab3f2ac89ec940830e42a14da96cf, type: 3}
-  m_Name: RulesConfig
+  m_Name: test
   m_EditorClassIdentifier: 
   allTypeRules:
   - type: 0
     rules:
-    - type: 1
-      newCellType: 2
-      constraint:
-      - cellAround: 1
-        nbAround: 2
-      - cellAround: 0
-        nbAround: 4
     - type: 0
       newCellType: 1
       constraint:
       - cellAround: 1
-        nbAround: 3
-  - type: 2
-    rules:
+        nbAround: 6
     - type: 0
       newCellType: 0
       constraint:
       - cellAround: 0
-        nbAround: 6
+        nbAround: 2
   - type: 1
     rules:
     - type: 1
       newCellType: 2
       constraint:
       - cellAround: 1
-        nbAround: 3
+        nbAround: 6
+      - cellAround: 0
+        nbAround: 2
+    - type: 0
+      newCellType: 0
+      constraint:
       - cellAround: 0
         nbAround: 4
-    - type: 1
-      newCellType: 2
-      constraint:
-      - cellAround: 1
-        nbAround: 3
-      - cellAround: 2
-        nbAround: 5
     - type: 0
       newCellType: 2
       constraint:
-      - cellAround: 2
-        nbAround: 4
+      - cellAround: 0
+        nbAround: 2
+  - type: 2
+    rules:
+    - type: 0
+      newCellType: 0
+      constraint:
+      - cellAround: 0
+        nbAround: 5
