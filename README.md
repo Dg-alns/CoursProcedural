@@ -48,6 +48,7 @@ Comme sont nom l'évoque ce script permet la gestion de la grille de *Cell* ou v
           <ul>
             <li> Les coordonées de la cellule voulue en int (x, y) ou via un Vector2Int.
             <li> La cellule voulue via *Cell*.
+          </ul>
     <br>
     La methode renvoit un booléan.<br>
 
