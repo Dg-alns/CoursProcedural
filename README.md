@@ -5,7 +5,7 @@ Cours Procedural
 <details>
 <summary>Details</summary>
 
-- [Architecture Général](#architecture)
+- [Architecture Général](#architecture-général)
   - [Grid](#grid)
   - [Cell](#cell)
   - [ProceduralGenerationMethod](#proceduralGenerationMethod)
