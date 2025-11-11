@@ -32,22 +32,22 @@ Cours Procedural
 ## Architecture Général 
 
 Chaque Algorithme de génération de procédural de terrain hérite d'une architecture principal. <br>
-Cette architecture met en place 3 scritps majeur #Grid, #Cell, #ProceduralGenerationMethod.
+Cette architecture met en place 3 scritps majeur *Grid*, *Cell*, *ProceduralGenerationMethod*.<br>
 
 
 
 ## Grid
 
-Comme sont nom l'évoque ce script permet la gestion de la grille de #Cell ou vas ce retrouver le terrain final.
+Comme sont nom l'évoque ce script permet la gestion de la grille de #Cell ou vas ce retrouver le terrain final.<br>
 
   - ## Methode principal
 
-      #TryGetCellByCoordinates
-          Cette méthode permet de détecter si une #Cell est contenue dans à des coordonées précise.
-          Les arguments que reçoit cette methodes sont :
-              1. Les coordonées de la cellule voulue en int (x, y) ou via un Vector2Int
-              2. La cellule voulue via #Cell
-          La methode renvoit un booléan.
+      *TryGetCellByCoordinates*<br>
+          Cette méthode permet de détecter si une *Cell* est contenue dans à des coordonées précise.<br>
+          Les arguments que reçoit cette methodes sont :<br>
+              1. Les coordonées de la cellule voulue en int (x, y) ou via un Vector2Int<br>
+              2. La cellule voulue via *Cell*<br>
+          La methode renvoit un booléan.<br>
 
 
 
