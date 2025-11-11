@@ -31,7 +31,7 @@ Cours Procedural
 
 ## Architecture Général 
 
-Chaque Algorithme de génération de procédural de terrain hérite d'une architecture principal.
+Chaque Algorithme de génération de procédural de terrain hérite d'une architecture principal. <br>
 Cette architecture met en place 3 scritps majeur #Grid, #Cell, #ProceduralGenerationMethod.
 
 
