@@ -8,7 +8,7 @@ Cours Procedural
 - [Architecture Général](#architecture-général)
   - [Grid](#grid)
   - [Cell](#cell)
-  - [Procedural Generation Method](#proceduralGenerationMethod)
+  - [Procedural Generation Method](#procedural-generation-method)
 - [Comment ajouter un nouvelle algorithme](#comment-ajouter-un-nouvelle-algorithme)
 - [Simple Room Placement](#simple-room-placement)
 - [BSP](#bsp)
