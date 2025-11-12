@@ -175,7 +175,6 @@ Cette algorithme est donc priser lors de la création de terrain de taille restr
 La **taille** est la limite majeur à cette algorithme au vu du à la gestion de toute les cellules en fonction de leur voisine.
 
 
-  <br>
 | | |
 |:-:|:-:|
 | <img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/> | Noise Density correspond au % d'avoir un *Tile* d'eau. |
