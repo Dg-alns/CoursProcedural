@@ -9,19 +9,13 @@ Cours Procedural
   - [Grid](#grid)
   - [Cell](#cell)
   - [Procedural Generation Method](#proceduralGenerationMethod)
-  - [Unity Inspector](#noise)
 - [Comment ajouter un nouvelle algorithme](#ajouterNewAlgo)
 - [Simple Room Placement](#srp)
-  - [Unity Inspector](#noise)
 - [BSP](#bsp)
-  - [Unity Inspector](#noise)
 - [Cellular Automata](#ca)
-  - [Unity Inspector](#noise)
   - [Cell Rule Systeme](#caCRS)
-  - [Configuration](#caCRSC)
 - [Noise](#noise)
   - [Terrain](#noiseT)
-- [Unity Inspector](#noise)
 
 </details>
 
@@ -94,12 +88,6 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
               <li> La room à placer via un Vector2Int.
               <li> L'espace voulue autour de la room (pour éviter de coller 2 room) via un int.
           </ul>
-          ```csharp
-            protected void AddTileToCell(Cell cell, string tileName, bool overrideExistingObjects)
-          {
-              var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
-              GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
-          }
           </ul>
     <br>
     La methode renvoit un booléan.    
@@ -114,26 +102,81 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
               <li> Le non de la tile via un string.
               <li> La posibiliter de remplacer la tile existante via un bool.
           </ul>
-          ```csharp
-            protected void AddTileToCell(Cell cell, string tileName, bool overrideExistingObjects)
-          {
-              var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
-              GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
-          }
-      ```
           </ul>
     <br>
 
 
-## Procedural Generation Method
+## Comment ajouter un nouvelle algorithme
+
+Pour créer et ajouter un nouvelle algorithme, il suffit de suivre ce chemin.<br>
+<ul>
+  <li>Créer un nouveau scripts Monobehavior.<br>
+  <li>Remplacer Monobehavior par *ProceduralGenerationMethod*.<br>
+  <li>Ajouter le méthode **ApplyGeneration** en override.<br>
+  <li>Créer votre algorithme<br>
+</ul>
+  <br>
 
 
+## Simple Room Placement
+
+Cette algorithme permet de crée des rooms aléatoirement (en fonction d'une seed) sur la grille. <br>
+Des couloirs sont placer par la suite en respectant une règle.<br>
+Chaque room ne contient que **un** couloir d'entrer et **un** couloir de sortie.<br>
+On commence par relier la room la plus à gauche et en haut de la grille à celle la plus proche.<br>
+Et ainsi de suite la room relier devient la source et relier la room la plus proche...
+
+<br><br>
+
+Les avantages de cette algorithme mais qui en fais aussi une limite est sa complexiter minime.
+Les rooms ne pouvant pas être interconecter on retouve vite une shémas de cercle.
+
+  <br>
 
 
+## BSP
+
+L'algorithme BSP ou Binary Space Partition, est un algorithme basée sur le découpage de la grille en deux sur plusieure génération.<br>
+
+La grille de base ou aussi appeler **root** vas alors se sindre en 2 et crée un enfant A et un enfant B, c'est enfant sont appeler **node**.<br>
+
+Ces enfant vont respectivement de cindre en 2<br>
+
+Les enfant fineaux, appeler **leafs** vont correspondre au espace ou des rooms vont pourvoire être crées.<br>
+
+Ces rooms vont alors être relier en fraterie via leur **node** et on remonte les node ainsi de suite pour relier tous les rooms.
+
+<br><br>
+
+L'avantage principale de cette algorithme est présent notament sur la création des couloire liant les rooms entre elle. On perd l'aspet de cercle present dans l'algorithme Simple Room Placement.<br>
+Cette algorithme vas être généralement favoriser pour la création de donjon.
 
 
+  <br>
 
 
+## Cellular Automata
+
+Le Cellular Automata est un algorithme vivant. Il va génerer un bruit blanc dit **noise** (génération purement aléatoire) de *Cell*.<br>
+
+L'algorithme vas gérer l'état de des *Cell* en fonction des *Cell* qui l'entoure.<br>
+
+Une *Cell* vas avoir au maximum 8 *Cell* voisine ayant chacune un état propre.<br>
+
+Le *Cell Rules* vas alors récupérer les états des *Cell* voisine et gérer en fontion des **Rule** associer au type de la cellule que l'on inspect.
+
+<br><br>
+
+L'avantage de cette algorithme est que l'on crée des cellule qui s'adapte à un environement vivant et qui s'adapte à c'est alentour.<br>
+Cette algorithme est donc priser lors de la création de terrain de taille restraint.<br>
+
+La **taille** est la limite majeur à cette algorithme au vu du à la gestion de toute les cellules en fonction de leur voisine.
+
+
+  <br>
+
+
+## Noise
 
 
 
