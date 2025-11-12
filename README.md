@@ -133,8 +133,7 @@ Et ainsi de suite la room relier devient la source et relier la room la plus pro
 Les avantages de cette algorithme mais qui en fais aussi une limite est sa complexiter minime.
 Les rooms ne pouvant pas être interconecter on retouve vite une shémas de cercle.
 
-  <br>
-<img src="Documentation/SimpleGrid.png?raw=true" alt="SimpleGrid" width="350px" height="700px"/>
+  <br><img src="Documentation/SimpleGrid.png?raw=true" alt="SimpleGrid" width="350px" height="700px"/> 
 <br>
 
 ## BSP
@@ -177,10 +176,20 @@ La **taille** est la limite majeur à cette algorithme au vu du à la gestion de
 
 
   <br>
-<img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/>
+| | |
+|:-:|:-:|
+| <img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/> | <li>Noise Density correspond au % d'avoir un *Tile* d'eau</li>|
 <br>
 
 <img src="Documentation/Rule Config.png?raw=true" alt="Rule Config" width="350px" height="700px"/>
+| | |
+|:-:|:-:|
+| <img src="Documentation/Rule Config.pnj?raw=true" alt="Rule Config" width="350px" height="700px"/> | **Chaque** *Tile* utiliser doit être inscrite en temps que Type dans la première list, aucune **Rules** peut être renseigner<br>
+                                                                                                      <li>*Rules* Contient le type de rule et le nouvaux type de *Cell* si l'une des **Rules** est valider</li><br>
+                                                                                                      <li>*Constaint* Contient les types de *Cell* à utiliser pour l'application d'un **Rule** et sa quantité minimal</li><br>
+                                                                                                      <li>**Attention** *X* signifie **1** seule contraint et *XY* signifie **2** contraintes</li><br>
+
+|
 <br>
 
 ## Noise
@@ -212,7 +221,8 @@ Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:
 
 | | |
 |:-:|:-:|
-| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | L'avantage de cette algorithme est que l'on peut générer de très grande grille assez rapidement.<br>Mais aussi on peut générer des meshes avec cette algorithme. |
+| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | <li>On retrouve les **contraintes** expliquer ci-dessus</li><br>
+                                                                                          <li>**Height** contient les hauteurs maximal entre *-0.5* et *1* pour la répartition des *Tile* dans le **noise**</li><br>|
 
 
 
