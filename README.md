@@ -9,13 +9,11 @@ Cours Procedural
   - [Grid](#grid)
   - [Cell](#cell)
   - [Procedural Generation Method](#proceduralGenerationMethod)
-- [Comment ajouter un nouvelle algorithme](#ajouterNewAlgo)
-- [Simple Room Placement](#srp)
+- [Comment ajouter un nouvelle algorithme](#comment-ajouter-un-nouvelle-algorithme)
+- [Simple Room Placement](#simple-room-placement)
 - [BSP](#bsp)
-- [Cellular Automata](#ca)
-  - [Cell Rule Systeme](#caCRS)
+- [Cellular Automata](#cellular-automata)
 - [Noise](#noise)
-  - [Terrain](#noiseT)
 
 </details>
 
