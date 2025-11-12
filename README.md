@@ -96,9 +96,7 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
           </ul>
           </ul>
     <br>
-    La methode renvoit un booléan.
-
-    
+    La methode renvoit un booléan.    
     <br>
 
       *AddTileToCell*<br>
@@ -110,12 +108,18 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
               <li> Le non de la tile via un string.
               <li> La posibiliter de remplacer la tile existante via un bool.
           </ul>
+          ```csharp
+            protected void AddTileToCell(Cell cell, string tileName, bool overrideExistingObjects)
+          {
+              var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
+              GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
+          }
+          ```
           </ul>
     <br>
-    La methode renvoit un booléan.<br>
 
 
-
+## Procedural Generation Method
 
 
 
