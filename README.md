@@ -207,7 +207,7 @@ Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:
 
 <br><br>
 
-<div style="display: flex; align-items: center;">
+<div style="display: flex; align-items: right;">
   <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350" height="700" style="margin-right: 20px;"/>
 
   <p>
