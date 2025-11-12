@@ -212,7 +212,7 @@ Mais aussi on peut générer des meshs avec cette algorithme.
 
 
 
-<img src="Documentation/Noise.png?raw=true" alt="Noise" width="900px" height="234px"/>
+<img src="Documentation/Noise.png?raw=true" alt="Noise" width="200px" height="500px"/>
 
 
 
