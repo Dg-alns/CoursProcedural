@@ -207,12 +207,12 @@ Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:
 
 <br><br>
 
+<img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/>
 L'avantage de cette algorithme est que l'on peut générer de très grande grille assez rapidement.<br>
 Mais aussi on peut générer des meshs avec cette algorithme.
 
 
 
-<img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/>
 
 
 
