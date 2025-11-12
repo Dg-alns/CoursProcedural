@@ -136,7 +136,8 @@ Les avantages de cette algorithme mais qui en fais aussi une limite est sa compl
 Les rooms ne pouvant pas être interconecter on retouve vite une shémas de cercle.
 
   <br>
-
+<img src="Documentation/SimpleGrid.png?raw=true" alt="SimpleGrid" width="350px" height="700px"/>
+<br>
 
 ## BSP
 
@@ -178,7 +179,11 @@ La **taille** est la limite majeur à cette algorithme au vu du à la gestion de
 
 
   <br>
+<img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/>
+<br>
 
+<img src="Documentation/Rule Config.png?raw=true" alt="Rule Config" width="350px" height="700px"/>
+<br>
 
 ## Noise
 
