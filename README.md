@@ -194,17 +194,25 @@ Exemple
 </ul>
 <br>
 
+Le **noise** utiliser est un **fractal noise**, c'est une addition de plusieur **noise** permetant d'ajouter du detail<br>
+
 Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:<br>
 <ul>
-  <li>Amplitude: De base à 1 si l'on augmente l'amplitude on van alors augmente des les extremes</li>
+  <li>Amplitude: De base à 1 si l'on augmente l'amplitude on vas alors augmente des les extremes (plus accesibles)</li>
+  <li>Frequence: De base à 0.03 si l'on augmente la fréquence on vas alors détailler le **noise** (principe d'un zoom)</li>
+  <br>
+  <li>Lacunariter: De base à 2 si l'on augmente la fréquence vas augmenter pour chaque octave. On vas donc accorder d'avantage d'influence au dernière octave sur l'aspect final. La lacunariter augmente les petits détails</li>
+  <li>Persistance: De base à 0.5 elle permet de donner ou non de l'importance au octave. La persistance affecte ou non la modification de ces détailles lors des génération</li>
 </ul>
 
+<br><br>
+
+L'avantage de cette algorithme est que l'on peut générer de très grande grille assez rapidement.<br>
+Mais aussi on peut générer des meshs avec cette algorithme.
 
 
 
-
-
-
+<img src="Documentation/Images/PNG_Zenject-colour (1).png?raw=true" alt="Zenject" width="900px" height="234px"/>
 
 
 
