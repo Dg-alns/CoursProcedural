@@ -178,12 +178,12 @@ La **taille** est la limite majeur à cette algorithme au vu du à la gestion de
   <br>
 | | |
 |:-:|:-:|
-| <img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/> | <li>Noise Density correspond au % d'avoir un *Tile* d'eau</li>|
+| <img src="Documentation/CellularAutomata.png?raw=true" alt="CellularAutomata" width="350px" height="700px"/> |Noise Density correspond au % d'avoir un *Tile* d'eau|
 <br>
 
 | | |
 |:-:|:-:|
-| <img src="Documentation/Rule Config.pnj?raw=true" alt="Rule Config" width="350px" height="700px"/> | **Chaque** *Tile* utiliser doit être inscrite en temps que Type dans la première list, aucune **Rules** peut être renseigner<br><br> *Rules* Contient le type de rule et le nouvaux type de *Cell* si l'une des **Rules** est valider<br> *Constaint* Contient les types de *Cell* à utiliser pour l'application d'un **Rule** et sa quantité minimal<br> **Attention** *X* signifie **1** seule contraint et *XY* signifie **2** contraintes<br> |
+| <img src="Documentation/Rule Config.png?raw=true" alt="Rule Config" width="350px" height="700px"/> | **Chaque** *Tile* utiliser doit être inscrite en temps que Type dans la première list, aucune **Rules** peut être renseigner<br><br> *Rules* Contient le type de rule et le nouvaux type de *Cell* si l'une des **Rules** est valider<br> *Constaint* Contient les types de *Cell* à utiliser pour l'application d'un **Rule** et sa quantité minimal<br> **Attention** *X* signifie **1** seule contraint et *XY* signifie **2** contraintes<br> |
 <br>
 
 ## Noise
