@@ -94,6 +94,12 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
               <li> La room à placer via un Vector2Int.
               <li> L'espace voulue autour de la room (pour éviter de coller 2 room) via un int.
           </ul>
+          ```csharp
+            protected void AddTileToCell(Cell cell, string tileName, bool overrideExistingObjects)
+          {
+              var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
+              GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
+          }
           </ul>
     <br>
     La methode renvoit un booléan.    
@@ -114,7 +120,7 @@ Il va contenir des information comme le nombre maximum de step, *Grid* et aussi 
               var tileTemplate = ScriptableObjectDatabase.GetScriptableObject<GridObjectTemplate>(tileName);
               GridGenerator.AddGridObjectToCell(cell, tileTemplate, overrideExistingObjects);
           }
-          ```
+      ```
           </ul>
     <br>
 
