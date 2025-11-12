@@ -184,10 +184,10 @@ La **taille** est la limite majeur à cette algorithme au vu du à la gestion de
 <img src="Documentation/Rule Config.png?raw=true" alt="Rule Config" width="350px" height="700px"/>
 | | |
 |:-:|:-:|
-| <img src="Documentation/Rule Config.pnj?raw=true" alt="Rule Config" width="350px" height="700px"/> | **Chaque** *Tile* utiliser doit être inscrite en temps que Type dans la première list, aucune **Rules** peut être renseigner<br>
-                                                                                                      <li>*Rules* Contient le type de rule et le nouvaux type de *Cell* si l'une des **Rules** est valider</li><br>
-                                                                                                      <li>*Constaint* Contient les types de *Cell* à utiliser pour l'application d'un **Rule** et sa quantité minimal</li><br>
-                                                                                                      <li>**Attention** *X* signifie **1** seule contraint et *XY* signifie **2** contraintes</li><br>
+| <img src="Documentation/Rule Config.pnj?raw=true" alt="Rule Config" width="350px" height="700px"/> | **Chaque** *Tile* utiliser doit être inscrite en temps que Type dans la première list, aucune **Rules** peut être renseigner<br><br>
+                                                                                                      *Rules* Contient le type de rule et le nouvaux type de *Cell* si l'une des **Rules** est valider<br>
+                                                                                                      *Constaint* Contient les types de *Cell* à utiliser pour l'application d'un **Rule** et sa quantité minimal<br>
+                                                                                                      **Attention** *X* signifie **1** seule contraint et *XY* signifie **2** contraintes<br>
 
 |
 <br>
@@ -221,7 +221,7 @@ Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:
 
 | | |
 |:-:|:-:|
-| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | On retrouve les **contraintes** expliquer ci-dessus <br> **Height** contient les hauteurs maximal entre *-0.5* et *1* pour la répartition des *Tile* dans le **noise**|
+| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | On retrouve les **contraintes** expliquer ci-dessus <br><br> **Height** contient les hauteurs maximal entre *-0.5* et *1* pour la répartition des *Tile* dans le **noise**|
 
 
 
