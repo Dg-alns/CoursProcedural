@@ -121,9 +121,13 @@ Pour créer et ajouter un nouvelle algorithme, il suffit de suivre ce chemin.<br
 ## Simple Room Placement
 
 Cette algorithme permet de crée des rooms aléatoirement (en fonction d'une seed) sur la grille. <br>
+
 Des couloirs sont placer par la suite en respectant une règle.<br>
+
 Chaque room ne contient que **un** couloir d'entrer et **un** couloir de sortie.<br>
+
 On commence par relier la room la plus à gauche et en haut de la grille à celle la plus proche.<br>
+
 Et ainsi de suite la room relier devient la source et relier la room la plus proche...
 
 <br><br>
@@ -178,7 +182,22 @@ La **taille** est la limite majeur à cette algorithme au vu du à la gestion de
 
 ## Noise
 
+Le noise est un algorithme qui vas générer une **noise** (valeur aléatoire entre -1 et 1) dans la grille.<br>
 
+On va donc générer des *Tile* en fonction de la valeur associer au coordonées de la *Cell*.<br>
+
+Exemple 
+<ul>
+  <li>(-1, -0.5): Eau</li>
+  <li>(-0.51, 0.5): Herbe</li>
+  <li>(0.51, 1): Pierre</li>
+</ul>
+<br>
+
+Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:<br>
+<ul>
+  <li>Amplitude: De base à 1 si l'on augmente l'amplitude on van alors augmente des les extremes</li>
+</ul>
 
 
 
