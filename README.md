@@ -221,8 +221,7 @@ Ce **noise** est soumis à de multiple contrainte dons les plus importante sont:
 
 | | |
 |:-:|:-:|
-| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | <li>On retrouve les **contraintes** expliquer ci-dessus</li><br>
-                                                                                          <li>**Height** contient les hauteurs maximal entre *-0.5* et *1* pour la répartition des *Tile* dans le **noise**</li><br>|
+| <img src="Documentation/Noise.png?raw=true" alt="Noise" width="350px" height="700px"/> | <li>On retrouve les **contraintes** expliquer ci-dessus</li> <li>**Height** contient les hauteurs maximal entre *-0.5* et *1* pour la répartition des *Tile* dans le **noise**</li>|
 
 
 
